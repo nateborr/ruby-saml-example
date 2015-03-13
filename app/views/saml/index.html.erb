@@ -23,7 +23,9 @@
     </table>
   <% end %>
   <p><%= link_to "Logout", :action => "logout" %></p>
-  <p><%= link_to "Single Logout", :action => "logout", :slo => '1' %></p>
+  <% if Account.get_saml_settings.idp_slo_target_url.present? %>
+    <p><%= link_to "Single Logout", :action => "logout", :slo => '1' %></p>
+  <% end %>
 
 <% else %>
   <p><%= link_to "Login", :action=>"sso"%></p>
