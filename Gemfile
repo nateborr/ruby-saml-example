@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'ruby-saml', :git => 'https://github.com/onelogin/ruby-saml.git'
 
 gem 'byebug'
