@@ -21,6 +21,14 @@ class SamlController < ApplicationController
     response = OneLogin::RubySaml::Response.new(params[:SAMLResponse])
     response.settings = Account.get_saml_settings
 
+    logger.info "\n\n#{response.response}\n\n"
+
+    begin
+      response.validate!
+    rescue Exception => e
+      logger.error e.message
+    end
+
     if response.is_valid?
       session[:user_id] = response.name_id
       session[:attributes] = response.attributes
